@@ -1,1 +1,323 @@
-hello World
+<html class="gr__w3schools_com"><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: .70;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("img-1.jpg");
+
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  background-image: url("img-2.jpg");
+  min-height: 60%;
+}
+
+.bgimg-3 {
+  background-image: url("img-3.jpg");
+  min-height: 80%;
+}
+
+.caption {
+  position: absolute;
+  /*left: 0;*/
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption2 {
+  position: absolute;
+  /*left: 0;*/
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+.caption span.border{
+  background-color: #262673;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+  
+}
+.caption2 span.border, .caption3 span.border  {
+  background-color: #9f9fdf;
+  color: black;
+  padding: 18px;
+  font-size: 20px;
+  letter-spacing: 5px;
+  font: 'Arial';
+}
+
+.caption3 {
+  position: absolute;
+  /*left: 0;*/
+  top: 80%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+.title {
+      color: white;
+      font-weight: bold;
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+      background-color: #0080ff;
+      border-radius: 40px 40px 80px 80px;
+  }
+  .header .block {
+      margin: 0px auto;
+
+  }
+  #main .block {
+      margin: 10px;
+      float: left;
+  }
+
+  .block {
+      text-align: center;
+      border-radius: 40px;
+      width: 300px;
+      background-color: white;
+  }
+  #main {
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .content {
+      padding: 10px;
+      overflow-y: auto;
+      height: 150px;
+  }
+  body {
+      background-color: #cccccc;
+      font-family: arial;
+  }
+  input[type=text] {
+      width: 90%;
+  }
+  textarea {
+      margin-top: 5px;
+      width: 90%;
+      height: 70%;
+  }
+  button {
+      margin:10px;
+  }
+  .remove-todo {
+      background-color: #ee0000;
+      color: #eeeeee;
+  }
+  .todo.completed .title,
+  .todo.completed .content{
+      text-decoration: line-through;
+  }
+
+  .blank {
+    background-color: transparent;
+    height: 100px;
+  }
+
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+
+<div class="bgimg-1">
+  <div class="caption">
+  <span class="border">SIMPLE TO DO LIST</span>
+</div>
+<div class="caption2">
+  <span class="border">By Mohamad Bastin</span>
+  </div>
+<div class="caption3">
+<span class='border'>SCROLL DOWN</span>
+</div>
+</div>
+
+<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;">To Do List</h3>
+  <p>This Web page is a test requested from CSESA Informatics and the goal is to verify qualified front-end developers for their further projects.<br>
+  this HTML page uses parallax scrolling. In this page you can add,delete and mark done a TO DO object.</p>
+</div>
+
+<div class="bgimg-2">
+  <!-- <div class="caption"> -->
+  <!-- <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">LESS HEIGHT</span> -->
+  <span class="border"><br><br><br></span>
+  <div class="header">
+        <div class="block" >
+            <div class="title">
+                New todo
+            </div>
+            <div class="content">
+                <input type="text" placeholder="Title" id="new-title">
+                <textarea placeholder="Content" id="new-content"></textarea>
+            </div>
+            <div class="actions">
+                <button id="add-todo">
+                    Add Todo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <p>Here you can see and manage your Todo list. .</p>
+  </div>
+</div>
+
+<div class="bgimg-3">
+  <!-- <div class="caption"> -->
+  <!-- <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span> -->
+  <!-- </div> -->
+    <span class="border"><br><br></span>
+    <div id="main">
+    
+        <div class="block todo" style="">
+            <div class="title">Mark Done</div>
+            <div class="content">You can mark a todo object by clicking on the Mark Done button.<br>Try it.</div>
+            <div class="actions">
+                <button class="done-todo">
+                    Mark done
+                </button>
+                <button class="remove-todo">
+                    Remove todo
+                </button>
+            </div>
+        </div>
+
+        <div class="block todo" style="">
+            <div class="title">Remove Todo</div>
+            <div class="content">You can remove a todo object by clicking on the Remove Todo button.<br>Try it.</div>
+            <div class="actions">
+                <button class="done-todo">
+                    Mark done
+                </button>
+                <button class="remove-todo">
+                    Remove todo
+                </button>
+            </div>
+        </div>
+
+    <div id="sample" style="display:none">
+        <div class="block todo" style="">
+            <div class="title">
+                title
+            </div>
+            <div class="content">
+                content
+            </div>
+            <div class="actions">
+                <button class="done-todo">
+                    Mark done
+                </button>
+                <button class="remove-todo">
+                    Remove todo
+                </button>
+            </div>
+        </div>
+    </div>
+    </div> 
+</div>
+
+<script>
+        const sample_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
+        const sample_long_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
+        
+        const addTodo = function(title, content){
+            $("#main").append(
+                $("#sample").html()
+            )
+            $("#main").children(".todo:last").children('.title').text(title);
+            $("#main").children(".todo:last").children('.content').text(content);
+        }
+
+        $(document).ready(function(){            
+
+            $("#add-todo").click(function(){
+                if($("#new-title").val() == ''){
+                    alert("title can't be empty");
+                } else {
+                    addTodo(
+                        $("#new-title").val(),
+                        $("#new-content").val(),
+                    )
+                }
+            })
+
+            $(document).on('click', '.remove-todo', function(){
+                $(this).parent().parent().remove()
+            });
+
+            $(document).on('click', '.done-todo', function(){
+                let todo = $(this).parent().parent();
+                // if(todo.hasClass('completed')){
+                //     todo.removeClass('completed')
+                //     if($("input[name=what-to-show]:checked").val() == "show-completed"){
+                //         todo.hide();
+                //     }
+                // } else {
+                    todo.addClass('completed');
+                    // if($("input[name=what-to-show]:checked").val() == "show-not-completed"){
+                    //     todo.hide();
+                    // }
+                })});
+
+            // $("input[name=what-to-show]").click(function(){
+            //     if($(this).val() == "show-all"){
+            //         $('.todo').show();
+            //     } else if($(this).val() == "show-completed"){
+            //         $('.todo').hide();
+            //         $('.todo.completed').show();
+            //     } else {
+            //         $('.todo').show();
+            //         $('.todo.completed').hide();
+            //     }
+            // })
+        
+    </script>
+
+<!-- <div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+  <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+  </div>
+</div>
+
+<div class="bgimg-1">
+  <div class="caption">
+  <span class="border">COOL!</span>
+  </div>
+</div> -->
+
+
+</body></html>
