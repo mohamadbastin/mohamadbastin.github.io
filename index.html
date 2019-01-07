@@ -140,9 +140,72 @@ h3 {
       text-decoration: line-through;
   }
 
+#settings {
+            text-align: center;
+        }
   .blank {
     background-color: transparent;
     height: 100px;
+  }
+
+  .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  }
+
+  .switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+  }
+
+  .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+
+  .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+
+  input:checked + .slider {
+  background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+  border-radius: 34px;
+  }
+
+  .slider.round:before {
+  border-radius: 50%;
   }
 
 </style>
@@ -193,6 +256,13 @@ h3 {
 <div style="position:relative;">
   <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
   <p>Here you can see and manage your Todo list. .</p>
+  <div id="settings">
+    <p style="text-align: center;"> Remaining &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completed</p>
+  <label class="switch" id="shower">
+    <input type="checkbox" name="showornot">
+    <span class="slider round"></span>
+  </label>
+  </div>
   </div>
 </div>
 
@@ -251,8 +321,8 @@ h3 {
 </div>
 
 <script>
-        const sample_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
-        const sample_long_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
+        // const sample_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
+        // const sample_long_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit distinctio, nisi officiis voluptatum facere animi a molestias, asperiores eum aliquam ratione dignissimos. Sed quas officia reiciendis maiores sunt, asperiores temporibus.";
         
         const addTodo = function(title, content){
             $("#main").append(
@@ -271,41 +341,50 @@ h3 {
                     addTodo(
                         $("#new-title").val(),
                         $("#new-content").val(),
-                    )
-                }
-            })
+                    );
+                };
+            })});
 
-            $(document).on('click', '.remove-todo', function(){
+            $(document).on('click ', '.remove-todo', function(){
                 $(this).parent().parent().remove()
             });
 
             $(document).on('click', '.done-todo', function(){
                 let todo = $(this).parent().parent();
-                // if(todo.hasClass('completed')){
-                //     todo.removeClass('completed')
-                //     if($("input[name=what-to-show]:checked").val() == "show-completed"){
-                //         todo.hide();
-                //     }
-                // } else {
-                    todo.addClass('completed');
-                    // if($("input[name=what-to-show]:checked").val() == "show-not-completed"){
-                    //     todo.hide();
-                    // }
-                })});
 
-            // $("input[name=what-to-show]").click(function(){
-            //     if($(this).val() == "show-all"){
-            //         $('.todo').show();
-            //     } else if($(this).val() == "show-completed"){
-            //         $('.todo').hide();
-            //         $('.todo.completed').show();
-            //     } else {
-            //         $('.todo').show();
-            //         $('.todo.completed').hide();
-            //     }
-            // })
-        
-    </script>
+                if(todo.hasClass('completed')){
+                    todo.removeClass('completed');
+                    if($('input[name="showornot"]').prop('checked')){
+                        $('.todo').hide();
+                    $('.todo.completed').show();
+                    }
+                } else {
+                    todo.addClass('completed');
+                    $('.todo').show();
+                    $('.todo.completed').hide();
+                }});
+
+
+            // $(document).on('click', '.switch', function(){
+            // if($('input[name="showornot"]').prop('checked')){
+            //     console.log('sag');
+            // }});
+              $(document).on('change', '.switch', function(){
+                if($('input[name="showornot"]').prop('checked')){
+                    // console.log('sag')
+                    $('.todo').hide();
+                    $('.todo.completed').show();
+                    $(".done-todo").html('Mark Undone');
+
+                } else {
+                    $('.todo').show();
+                    $('.todo.completed').hide();
+                    $(".done-todo").html('Mark Done');
+                }
+            });
+
+
+</script>        
 
 <!-- <div style="position:relative;">
   <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
